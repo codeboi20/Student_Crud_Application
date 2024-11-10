@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Student_Crud_Application
 {
     public partial class Form3 : Form
-    {   
+    {
 
         private void LoadDataFromFile(string filePath)
         {
@@ -41,6 +41,8 @@ namespace Student_Crud_Application
                 dataGridView1.Rows.Add(values);
             }
         }
+
+
         private void SaveDataToFile(string filePath)
         {
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -61,9 +63,9 @@ namespace Student_Crud_Application
             }
         }
 
-       
-         
-        
+
+
+
 
         public Form3()
         {
@@ -81,72 +83,61 @@ namespace Student_Crud_Application
         {
 
         }
+        // dataGridView1_CellContentClick
+
+        private int selectedRowIndex = -1;
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            // Check if the clicked cell is not a header cell
-            if (e.RowIndex >= 0)
+            // Check if the clicked cell is not a header cell and is within the valid range
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count && e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView1.Columns.Count)
             {
                 // Get the selected row
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
                 // Populate the text boxes with the values from the selected row
-                textBox1.Text = row.Cells["StudentNumber"].Value.ToString();
-                textBox2.Text = row.Cells["Name"].Value.ToString();
-                textBox3.Text = row.Cells["Surname"].Value.ToString();
-                textBox4.Text = row.Cells["Age"].Value.ToString();
-                comboBox1.Text = row.Cells["Course"].Value.ToString();
+                textBox1.Text = row.Cells["StudentNumber"].Value?.ToString();
+                textBox2.Text = row.Cells["Name"].Value?.ToString();
+                textBox3.Text = row.Cells["Surname"].Value?.ToString();
+                textBox4.Text = row.Cells["Age"].Value?.ToString();
+                comboBox1.Text = row.Cells["Course"].Value?.ToString();
 
-
+                // Store the selected row index
+                selectedRowIndex = e.RowIndex;
             }
-
-
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Get the updated values from the text boxes
-            string updatedStudentNumber = textBox1.Text;
-            string updatedName = textBox2.Text;
-            string updatedSurname = textBox3.Text;
-            string updatedAge = textBox4.Text;
-            string updatedCourse = comboBox1.Text;
-
-            // Find the row in the DataGridView that matches the updated student number
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            // Check if a row is selected
+            if (selectedRowIndex >= 0 && selectedRowIndex < dataGridView1.Rows.Count)
             {
-                if (row.Cells["StudentNumber"].Value.ToString() == updatedStudentNumber)
-                {
-                    // Update the row with the new values
-                    row.Cells["Name"].Value = updatedName;
-                    row.Cells["Surname"].Value = updatedSurname;
-                    row.Cells["Age"].Value = updatedAge;
-                    row.Cells["Course"].Value = updatedCourse;
-                    break;
-                }
-            }
+                // Get the updated values from the text boxes
+                string updatedStudentNumber = textBox1.Text;
+                string updatedName = textBox2.Text;
+                string updatedSurname = textBox3.Text;
+                string updatedAge = textBox4.Text;
+                string updatedCourse = comboBox1.Text;
 
-            // Write the updated data back to the text file
-            using (StreamWriter writer = new StreamWriter("TextFile1.txt"))
+                // Update the row with the new values
+                DataGridViewRow row = dataGridView1.Rows[selectedRowIndex];
+                row.Cells["StudentNumber"].Value = updatedStudentNumber;
+                row.Cells["Name"].Value = updatedName;
+                row.Cells["Surname"].Value = updatedSurname;
+                row.Cells["Age"].Value = updatedAge;
+                row.Cells["Course"].Value = updatedCourse;
+
+                // Write the updated data back to the text file
+                SaveDataToFile("TextFile1.txt");
+            }
+            else
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (!row.IsNewRow)
-                    {
-                        string[] values = new string[dataGridView1.Columns.Count];
-                        for (int i = 0; i < dataGridView1.Columns.Count; i++)
-                        {
-                            values[i] = row.Cells[i].Value?.ToString();
-                        }
-                        string line = string.Join(",", values);
-                        writer.WriteLine(line);
-                    }
-                }
+                MessageBox.Show("Please select a row to update.");
             }
-
-
         }
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -163,7 +154,7 @@ namespace Student_Crud_Application
 
                     int rowIndex = dataGridView1.SelectedRows[0].Index;
                     dataGridView1.Rows.RemoveAt(rowIndex);
-                    SaveDataToFile("students.txt");
+                    SaveDataToFile("TextFile1.txt");
                 }
                 else
                 {
