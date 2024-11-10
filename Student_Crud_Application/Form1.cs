@@ -8,10 +8,9 @@ namespace Student_Crud_Application
             InitializeComponent();
         }
 
+
         private void Sidebar_timer_tick(object sender, EventArgs e)
         {
-            //minimum and maximum size setter
-
             if (SidebarExpand)
             {
                 Sidebar.Width -= 10;
@@ -56,6 +55,50 @@ namespace Student_Crud_Application
         }
 
         private void updateStubtn_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+            this.Hide();
+        }
+
+        private void CalculatePeopleAndAverageAge(string filePath)
+        {
+            int totalAge = 0;
+            int rowCount = 0;
+
+            string[] lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+
+                string[] values = line.Split(',');
+
+                if (values.Length >= 4 && int.TryParse(values[3], out int age))
+                {
+                    totalAge += age;
+                    rowCount++;
+                }
+            }
+
+
+            double averageAge = (rowCount > 0) ? (double)totalAge / rowCount : 0;
+            MessageBox.Show($"Number of people: {rowCount}\nAverage age: {averageAge:F2}");
+        }
+
+        private void reportSumbtn_Click(object sender, EventArgs e)
+        {
+            string filePath = "TextFile1.txt";
+            CalculatePeopleAndAverageAge(filePath);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+            this.Hide();
+        }
+
+        private void deleteStuBtn_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
             form3.Show();

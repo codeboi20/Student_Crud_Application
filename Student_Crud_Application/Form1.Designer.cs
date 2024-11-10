@@ -40,19 +40,19 @@
             updateStubtn = new Button();
             panel6 = new Panel();
             deleteStuBtn = new Button();
+            panel7 = new Panel();
+            button1 = new Button();
             panel5 = new Panel();
             reportSumbtn = new Button();
             SidebarTimer = new System.Windows.Forms.Timer(components);
-            panel7 = new Panel();
-            button1 = new Button();
             Sidebar.SuspendLayout();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel6.SuspendLayout();
-            panel5.SuspendLayout();
             panel7.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -202,6 +202,35 @@
             deleteStuBtn.Text = "    Delete Student";
             deleteStuBtn.TextAlign = ContentAlignment.MiddleRight;
             deleteStuBtn.UseVisualStyleBackColor = false;
+            deleteStuBtn.Click += deleteStuBtn_Click;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.Transparent;
+            panel7.BackgroundImageLayout = ImageLayout.Center;
+            panel7.Controls.Add(button1);
+            panel7.Location = new Point(3, 250);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(202, 41);
+            panel7.TabIndex = 3;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.BackgroundImageLayout = ImageLayout.None;
+            button1.Cursor = Cursors.Hand;
+            button1.Dock = DockStyle.Fill;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 255);
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.ForeColor = Color.Violet;
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(202, 41);
+            button1.TabIndex = 2;
+            button1.Text = "     Update";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panel5
             // 
@@ -229,38 +258,12 @@
             reportSumbtn.Text = "    Report summary";
             reportSumbtn.TextAlign = ContentAlignment.MiddleRight;
             reportSumbtn.UseVisualStyleBackColor = false;
+            reportSumbtn.Click += reportSumbtn_Click;
             // 
             // SidebarTimer
             // 
             SidebarTimer.Interval = 10;
             SidebarTimer.Tick += Sidebar_timer_tick;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.Transparent;
-            panel7.BackgroundImageLayout = ImageLayout.Center;
-            panel7.Controls.Add(button1);
-            panel7.Location = new Point(3, 250);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(202, 41);
-            panel7.TabIndex = 3;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.Cursor = Cursors.Hand;
-            button1.Dock = DockStyle.Fill;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 255);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.ForeColor = Color.Violet;
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(202, 41);
-            button1.TabIndex = 2;
-            button1.Text = "    Report summary";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -280,8 +283,8 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel6.ResumeLayout(false);
-            panel5.ResumeLayout(false);
             panel7.ResumeLayout(false);
+            panel5.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }

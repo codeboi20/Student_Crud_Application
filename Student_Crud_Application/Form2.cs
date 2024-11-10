@@ -16,7 +16,7 @@ namespace Student_Crud_Application
         {
             InitializeComponent();
             comboBox2.Items.Add("DIT");
-            comboBox2.Items.Add("BIT"); 
+            comboBox2.Items.Add("BIT");
             comboBox2.Items.Add("BCOM");
         }
 
@@ -27,34 +27,41 @@ namespace Student_Crud_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
-        
-                // Retrieve values from text boxes
-                string Student_Num = textBox1.Text;
-                string Name = textBox3.Text;
-                string Surname = textBox2.Text;
-                string age = textBox4.Text;
-                string selectedItem = comboBox2.SelectedItem.ToString();
-                
+
+            // Retrieve values from text boxes
+            string Student_Num = textBox1.Text;
+            string Name = textBox3.Text;
+            string Surname = textBox2.Text;
+            string age = textBox4.Text;
+            string selectedItem = comboBox2.SelectedItem.ToString();
+
 
             // Combine values into a single line, delimited by commas
             string line = $"{Student_Num},{Name},{Surname},{age},{selectedItem}";
 
-                // Write the line to a text file
-                using (StreamWriter writer = new StreamWriter("TextFile1.txt", true))
-                {
-                    writer.WriteLine(line);
-                }
+            // Write the line to a text file
+            using (StreamWriter writer = new StreamWriter("TextFile1.txt", true))
+            {
+                writer.WriteLine(line);
+            }
 
-                // Optionally, clear the text boxes after writing to the file
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+            // Optionally, clear the text boxes after writing to the file
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
 
             Form3 form3 = new Form3();
             form3.Show();
             this.Hide();
 
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
         }
     }
 }

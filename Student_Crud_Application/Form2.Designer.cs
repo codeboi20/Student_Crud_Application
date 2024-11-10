@@ -37,6 +37,7 @@
             textBox4 = new TextBox();
             label6 = new Label();
             label4 = new Label();
+            textBox3 = new TextBox();
             textBox2 = new TextBox();
             label5 = new Label();
             label1 = new Label();
@@ -44,10 +45,12 @@
             label2 = new Label();
             panel3 = new Panel();
             comboBox1 = new ComboBox();
-            textBox3 = new TextBox();
+            panel1 = new Panel();
+            button2 = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -132,6 +135,13 @@
             label4.Size = new Size(0, 20);
             label4.TabIndex = 2;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(3, 100);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(121, 27);
+            textBox3.TabIndex = 1;
+            // 
             // textBox2
             // 
             textBox2.Location = new Point(3, 153);
@@ -197,12 +207,25 @@
             comboBox1.Size = new Size(121, 28);
             comboBox1.TabIndex = 3;
             // 
-            // textBox3
+            // panel1
             // 
-            textBox3.Location = new Point(3, 100);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(121, 27);
-            textBox3.TabIndex = 1;
+            panel1.Controls.Add(button2);
+            panel1.Location = new Point(9, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(30, 29);
+            panel1.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Fill;
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(30, 29);
+            button2.TabIndex = 4;
+            button2.Text = "<";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form2
             // 
@@ -210,6 +233,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 223, 237);
             ClientSize = new Size(370, 450);
+            Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
             Cursor = Cursors.Hand;
@@ -220,6 +244,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -242,5 +267,7 @@
         private ComboBox comboBox1;
         private ComboBox comboBox2;
         private TextBox textBox3;
+        private Panel panel1;
+        private Button button2;
     }
 }
